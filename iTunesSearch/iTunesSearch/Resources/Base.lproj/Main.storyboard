@@ -44,7 +44,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="ak0-u5-nFs" detailTextLabel="F9w-Sf-Zo9" style="IBUITableViewCellStyleSubtitle" id="E6g-hM-Sf2">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MediaResultsCell" textLabel="ak0-u5-nFs" detailTextLabel="F9w-Sf-Zo9" style="IBUITableViewCellStyleSubtitle" id="E6g-hM-Sf2" customClass="SearchResultsTableViewCell" customModule="iTunesSearch" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="128" width="414" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E6g-hM-Sf2" id="iDl-nz-eaT">
@@ -67,6 +67,10 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mediaCreatorLabel" destination="F9w-Sf-Zo9" id="sXp-H2-4MB"/>
+                                    <outlet property="mediaTitleLabel" destination="ak0-u5-nFs" id="3HP-5h-I5b"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
