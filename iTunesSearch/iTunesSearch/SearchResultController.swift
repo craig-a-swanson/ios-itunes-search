@@ -19,7 +19,7 @@ class SearchResultController {
         
         guard let requestURL = urlComponents?.url else {
             print("Request URL is nil.")
-            completion(nil)
+            completion(NSError())
             return
         }
         
@@ -28,12 +28,14 @@ class SearchResultController {
         
         URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
-                print("Error fetching data: \(error)")
+                print("Error fetching data")
+                completion(error)
                 return
             }
             
             guard let data = data else {
-                print("No data returned from data task.")
+                print("No data returned from the data task")
+                completion(NSError())
                 return
             }
             
@@ -42,8 +44,10 @@ class SearchResultController {
             do {
                 let mediaSearch = try jsonDecoder.decode(SearchResults.self, from: data)
                 self.searchResults.append(contentsOf: mediaSearch.results)
+                completion(nil)
             } catch {
-                
+                print("Unable to decode data into object of type [SearchResult]")
+                completion(error)
             }
         }
         
