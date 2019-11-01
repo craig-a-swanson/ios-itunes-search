@@ -16,6 +16,7 @@
 		44F301E7236BE9D50036097D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44F301E5236BE9D50036097D /* LaunchScreen.storyboard */; };
 		44F301F0236BF1F00036097D /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F301EF236BF1F00036097D /* SearchResult.swift */; };
 		44F301F2236BF5400036097D /* ResultType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F301F1236BF5400036097D /* ResultType.swift */; };
+		44F301F4236CEC390036097D /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F301F3236CEC390036097D /* SearchResultsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		44F301E8236BE9D50036097D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		44F301EF236BF1F00036097D /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		44F301F1236BF5400036097D /* ResultType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultType.swift; sourceTree = "<group>"; };
+		44F301F3236CEC390036097D /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				44F301EF236BF1F00036097D /* SearchResult.swift */,
 				44F301F1236BF5400036097D /* ResultType.swift */,
 				4407387C236C7FE0008E771B /* SearchResultController.swift */,
+				44F301F3236CEC390036097D /* SearchResultsTableViewController.swift */,
 				44F301E8236BE9D50036097D /* Info.plist */,
 				44F301EE236BEA290036097D /* Resources */,
 			);
@@ -160,6 +163,7 @@
 				44F301D8236BE9D40036097D /* AppDelegate.swift in Sources */,
 				44F301DA236BE9D40036097D /* SceneDelegate.swift in Sources */,
 				44F301F0236BF1F00036097D /* SearchResult.swift in Sources */,
+				44F301F4236CEC390036097D /* SearchResultsTableViewController.swift in Sources */,
 				44F301E2236BE9D40036097D /* iTunesSearch.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

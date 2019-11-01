@@ -49,7 +49,7 @@ class SearchResultController {
                 print("Unable to decode data into object of type [SearchResult]")
                 completion(error)
             }
-        }
+        }.resume()
         
     }
 }
