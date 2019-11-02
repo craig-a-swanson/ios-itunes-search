@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchResultsTableViewController: UITableViewController {
+class SearchResultsTableViewController: UITableViewController, UISearchBarDelegate {
     
     // MARK: Properties
     let searchResultsController = SearchResultController()
@@ -21,18 +21,17 @@ class SearchResultsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchField.delegate = self
 
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return searchResultsController.searchResults.count
     }
 
@@ -44,41 +43,52 @@ class SearchResultsTableViewController: UITableViewController {
 
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchField = searchField.text else { return }
+        var resultType: ResultType!
+        
+        switch mediaSelectionControl.selectedSegmentIndex {
+        case 0:
+            resultType = .software
+            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) { error  in
+                if let error = error {
+                    print("Error loading search results: \(error)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        case 1:
+            resultType = .musicTrack
+            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) { error  in
+                if let error = error {
+                    print("Error loading search results: \(error)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        case 2:
+            resultType = .movie
+            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) { error  in
+                if let error = error {
+                    print("Error loading search results: \(error)")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        default:
+            print("No media type was selected.")
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
