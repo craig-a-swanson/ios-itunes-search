@@ -39,9 +39,9 @@ class SearchResultController {
                 return
             }
             
-            let jsonDecoder = JSONDecoder()
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
             do {
+                print(urlComponents)
+                let jsonDecoder = JSONDecoder()
                 let mediaSearch = try jsonDecoder.decode(SearchResults.self, from: data)
                 self.searchResults.append(contentsOf: mediaSearch.results)
                 completion(nil)
