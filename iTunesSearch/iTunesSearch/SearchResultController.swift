@@ -9,13 +9,15 @@
 import Foundation
 
 class SearchResultController {
-    let baseURL = URL(string: "https://itunes.apple.com")!
+    let baseURL = URL(string: "https://itunes.apple.com/search")!
     var searchResults: [SearchResult] = []
     
+    // format should be:  https://itunes.apple.com/search?term=Tora&media=movie
     func performSearch(searchTerm: String, resultType: ResultType, completion: @escaping (Error?) -> Void) {
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        let searchTermQueryItem = URLQueryItem(name: "search", value: searchTerm)
-        urlComponents?.queryItems = [searchTermQueryItem]
+        let searchTermQueryItem = URLQueryItem(name: "term", value: searchTerm)
+        let resultTypeQueryItem = URLQueryItem(name: "media", value: resultType.rawValue)
+        urlComponents?.queryItems = [searchTermQueryItem, resultTypeQueryItem]
         
         guard let requestURL = urlComponents?.url else {
             print("Request URL is nil.")
@@ -40,7 +42,7 @@ class SearchResultController {
             }
             
             do {
-                print(urlComponents)
+                print(requestURL)
                 let jsonDecoder = JSONDecoder()
                 let mediaSearch = try jsonDecoder.decode(SearchResults.self, from: data)
                 self.searchResults.append(contentsOf: mediaSearch.results)
@@ -49,6 +51,7 @@ class SearchResultController {
                 print("Unable to decode data into object of type [SearchResult]")
                 completion(error)
             }
+            completion(nil)
         }.resume()
         
     }
