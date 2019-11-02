@@ -37,9 +37,10 @@ class SearchResultsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MediaResultsCell", for: indexPath) 
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MediaResultsCell", for: indexPath) as? SearchResultsTableViewCell else { return UITableViewCell() }
         
-        
+        let searchResult = searchResultsController.searchResults[indexPath.row]
+        cell.searchResult = searchResult
 
         return cell
     }

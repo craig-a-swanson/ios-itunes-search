@@ -24,7 +24,9 @@ class SearchResultsTableViewCell: UITableViewCell {
     
     // MARK: Methods
     func updateViews() {
-        
+        guard let searchResult = searchResult else { return }
+        mediaTitleLabel.text = searchResult.title
+        mediaCreatorLabel.text = searchResult.creator
     }
     
 
