@@ -21,7 +21,8 @@ class SearchResultController {
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
         let searchTermQueryItem = URLQueryItem(name: "term", value: searchTerm)
         let resultTypeQueryItem = URLQueryItem(name: "media", value: resultType.rawValue)
-        urlComponents?.queryItems = [searchTermQueryItem, resultTypeQueryItem]
+        let resultsShown = URLQueryItem(name: "limit", value: "10")
+        urlComponents?.queryItems = [searchTermQueryItem, resultTypeQueryItem, resultsShown]
         
         guard let requestURL = urlComponents?.url else {
             print("Request URL is nil.")
@@ -46,7 +47,6 @@ class SearchResultController {
             }
             
             do {
-                print(requestURL)
                 let jsonDecoder = JSONDecoder()
                 let mediaSearch = try jsonDecoder.decode(SearchResults.self, from: data)
                 self.searchResults.append(contentsOf: mediaSearch.results)
