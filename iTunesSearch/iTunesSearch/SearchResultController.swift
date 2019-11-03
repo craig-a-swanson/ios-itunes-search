@@ -9,9 +9,13 @@
 import Foundation
 
 class SearchResultController {
+    
+    // MARK: Properties
     let baseURL = URL(string: "https://itunes.apple.com/search")!
     var searchResults: [SearchResult] = []
     
+    
+    // MARK: Methods
     // format should be:  https://itunes.apple.com/search?term=Tora&media=movie
     func performSearch(searchTerm: String, resultType: ResultType, completion: @escaping (Error?) -> Void) {
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
