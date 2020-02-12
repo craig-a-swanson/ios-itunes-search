@@ -53,11 +53,7 @@ class SearchResultsTableViewController: UITableViewController, UISearchBarDelega
         switch mediaSelectionControl.selectedSegmentIndex {
         case 0:
             resultType = .software
-            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) { error  in
-                if let error = error {
-                    print("Error loading search results: \(error)")
-                    return
-                }
+            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) {
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -65,24 +61,14 @@ class SearchResultsTableViewController: UITableViewController, UISearchBarDelega
             }
         case 1:
             resultType = .musicTrack
-            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) { error  in
-                if let error = error {
-                    print("Error loading search results: \(error)")
-                    return
-                }
-                
+            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         case 2:
             resultType = .movie
-            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) { error  in
-                if let error = error {
-                    print("Error loading search results: \(error)")
-                    return
-                }
-                
+            searchResultsController.performSearch(searchTerm: searchField, resultType: resultType) {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
