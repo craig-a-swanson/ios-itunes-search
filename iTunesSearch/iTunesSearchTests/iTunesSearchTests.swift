@@ -19,6 +19,21 @@ import XCTest
 
 class iTunesSearchTests: XCTestCase {
     
+    func testForSomeNetworkResults() {
+        
+        let controller = SearchResultController()
+        let resultsExpectation = expectation(description: "Wait for search results")
+        
+        controller.performSearch(searchTerm: "Bad Bad Hats", resultType: .musicTrack) {
+            resultsExpectation.fulfill()
+        }
+        wait(for: [resultsExpectation], timeout: 2)
+        
+        // Now check results
+        XCTAssertTrue(controller.searchResults.count == 10, "Expecting 10 results for Bad Bad Hats.")
+        XCTAssertEqual("Midway", controller.searchResults[0].title)
+    }
+    
     func testForSomeResults() {
         let mock = MockDataLoader()
         mock.data = goodResultsData

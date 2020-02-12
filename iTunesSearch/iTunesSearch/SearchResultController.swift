@@ -41,15 +41,15 @@ class SearchResultController {
         request.httpMethod = "GET"
         
         // NOTE: in the DI update, we removed the URLSession.shared.dataTask with a call to the dataLoader.loadData
-        self.dataLoader.loadData(with: request) { data, error in
+        self.dataLoader.loadData(with: request) { possibleData, possibleError in
             
             // NOTE: in the DI update, we did not change any of the data task code.
-            if let error = error {
+            if let error = possibleError {
                 print("Error fetching data \(error)")
                 return
             }
             
-            guard let data = data else {
+            guard let receivedData = possibleData else {
                 print("No data returned from the data task")
                 completion()
                 return
@@ -57,7 +57,7 @@ class SearchResultController {
      
             do {
                 let jsonDecoder = JSONDecoder()
-                let mediaSearch = try jsonDecoder.decode(SearchResults.self, from: data)
+                let mediaSearch = try jsonDecoder.decode(SearchResults.self, from: receivedData)
                 self.searchResults = mediaSearch.results
             } catch {
                 print("Unable to decode data into object of type [SearchResult]")
